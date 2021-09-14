@@ -74,16 +74,16 @@ app.get("/download", (req, res) => {
 app.get("/download2", (req, res) => {
     res.download(__dirname + '/tmp/' + req.session.fileName + '.m3u8', function(err){
         if(err) throw err;
-        // Xoá file .m3u8 và session, chỉ lưu những file segment để người dùng có thể xem
-        req.session.destroy(function(err){
-            console.log(err);
-        });
-        fs.unlink(__dirname + '/tmp/' + req.session.fileName + '.m3u8', function (err) {
-            if (err) console.log(err);
-        });
-        fs.unlink(__dirname + '/tmp/' + req.session.fileName, function (err) {
-            if (err) console.log(err);
-        });
+    });
+    // Xoá file .m3u8 và session, chỉ lưu những file segment để người dùng có thể xem
+    req.session.destroy(function(err){
+        console.log(err);
+    });
+    fs.unlink(__dirname + '/tmp/' + req.session.fileName + '.m3u8', function (err) {
+        if (err) console.log(err);
+    });
+    fs.unlink(__dirname + '/tmp/' + req.session.fileName, function (err) {
+        if (err) console.log(err);
     });
 });
 
